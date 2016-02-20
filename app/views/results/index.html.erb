@@ -1,0 +1,24 @@
+<h1>Results for "<%= @test.name.capitalize %>"</h1>
+
+<table class="table table-striped">
+  <tr>
+    <th>Student</th>
+    <th>Correct</th>
+    <th>View Report</th>
+    <th>Actions</th>
+  </tr>
+  <% @results.each do |result| %>
+  <tr>
+    <td><%= result.student_name.capitalize + ' ' + result.student_last_name.capitalize + ', ' + result.student_group %></td>
+
+    <td>
+      <%= result.number_of_correct_answers.to_i %>/<%= @questions_number %>(<%= result.number_of_correct_answers.to_i/@questions_number %>%)
+    </td>
+    <td><%= link_to 'View', view_report_path(result) %></td>
+    <td><%= link_to 'Delete', results_destroy_path(result),
+                    method: :delete,
+                    data: {confirm: 'Вы точно хотите удалить этот pезультат?'}
+    %></td>
+  </tr>
+<% end %>
+</table>

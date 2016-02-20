@@ -1,0 +1,14 @@
+<h1>Report for <%= @result.student_name + ' ' + @result.student_last_name %></h1>
+<h1>Total: <%= @total_percentage %>% (<%= @result.number_of_correct_answers.to_i %>/<%= @questions_number %> correct)</h1>
+
+<% counter = 0 %>
+<% @questions.each do |question| %>
+    Question <%= counter += 1 %>: <%= question.question %><br/>
+      <% answers = Answer.where(:question_id => question.id) %>
+
+      <% answers.each do |answer| %>
+        <ul>
+        <li><%= answer.content %></li>
+        </ul>
+    <% end %>
+<% end %>

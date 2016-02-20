@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   post 'answers/:id' => 'results#save_answer', as: 'save_answer'
 
   get 'test_results/:id' => 'results#index', as: 'test_results'
+  delete 'test_result/:id' => 'results#destroy', as: 'results_destroy'
+  get 'test_result_reports/:id' => 'results#view_report', as: 'view_report'
 
 
 
