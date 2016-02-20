@@ -1,0 +1,13 @@
+<%= form_for @test do |f| %>
+  <div>
+    <%= f.label :name %><br/>
+    <%= f.text_field :name %>
+  </div>
+    <div>
+      <%= f.label :description %><br/>
+      <%= f.text_area :description %>
+    </div>
+  <div>
+    <%= f.submit 'Save' %>
+  </div>
+<% end %>

@@ -1,0 +1,24 @@
+<h1>Tests</h1>
+<%= link_to 'Create new test', new_test_path %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Actions</th>
+  </tr>
+
+  <% @tests.each do |test| %>
+  <tr>
+    <td>
+      <%= link_to test.name, test_path(test) %>
+    </td>
+    <td>
+      <%= link_to 'Edit', test_path(test) %>
+      <%= link_to 'Remove', test_path(test),
+                  method: :delete,
+                  data: {confirm: 'Вы точно хотите удалить этот учебный блок?'}
+      %>
+    </td>
+  </tr>
+  <% end %>
+</table>
