@@ -1,20 +1,25 @@
-<h1>Questions for <%= @test.name.capitalize %></h1>
-<%= link_to 'New question', new_test_question_path(@test) %>
+<h1>Questions for "<%= @test.name.capitalize %>"</h1>
+<%= link_to 'New question', new_test_question_path(@test), class: 'btn btn-default' %>
 
-<table>
+<table class="table table-striped" style="margin-top: 20px">
   <tr>
     <th>Question</th>
+    <th>Answers</th>
     <th>Actions</th>
   </tr>
 
   <% @questions.each do |question| %>
       <tr>
         <td>
-          <%= link_to question.question, test_question_path(@test, question) %>
+          <%= question.question %>
+        </td>
+        <% answers = Answer.where(:question_id => question.id) %>
+        <td>
+          <%= link_to answers.length, test_question_path(@test, question)  %>
         </td>
         <td>
           <%= link_to 'Edit', edit_test_question_path(@test, question) %>
-          <%= link_to 'Remove', test_questions_path(@test, question),
+          <%= link_to 'Remove', questions_destroy_path(@test, question),
                       method: :delete,
                       data: {confirm: 'Вы точно хотите удалить этот вопрос?'}
           %>

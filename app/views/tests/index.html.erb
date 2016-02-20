@@ -1,9 +1,10 @@
 <h1>Tests</h1>
 <%= link_to 'Create new test', new_test_path %>
 
-<table>
+<table class="table table-striped">
   <tr>
     <th>Name</th>
+    <th>Questions #</th>
     <th>Actions</th>
   </tr>
 
@@ -12,9 +13,14 @@
     <td>
       <%= link_to test.name, test_path(test) %>
     </td>
+    <% questions = Question.where(:test_id => test.id) %>
+    <td>
+      <%= link_to questions.length, test_path(test) %>
+    </td>
+
     <td>
       <%= link_to 'Edit', edit_test_path(test) %>
-      <%= link_to 'Remove', test_path(test),
+      <%= link_to 'Remove', tests_destroy_path(test),
                   method: :delete,
                   data: {confirm: 'Вы точно хотите удалить этот тест?'}
       %>

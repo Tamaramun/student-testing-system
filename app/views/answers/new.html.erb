@@ -1,0 +1,16 @@
+<h1>Create new answer for "<%= @question.question %>"</h1>
+
+<%= simple_form_for [@test, @question, @answer], :url => {:action => 'create'} do |f| %>
+    <div>
+      <%= f.input :content, label: 'Answer' %>
+    </div>
+
+    <div>
+      <%= f.input :is_correct, label: 'Is correct?', as: :radio_buttons %>
+    </div>
+
+    <%= f.hidden_field :question_id, value: params[:question_id] %>
+    <div>
+      <%= f.submit 'Save' %>
+    </div>
+<% end %>

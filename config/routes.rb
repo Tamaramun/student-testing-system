@@ -1,9 +1,16 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :tests do
-    resources :questions
+  resources :tests,  :except => [:destroy] do
+    resources :questions, :except => [:destroy] do
+      resources :answers,  :except => [:destroy]
+    end
   end
+
+  delete 'tests/:id' => 'tests#destroy', as: 'tests_destroy'
+  delete 'tests/:test_id/questions/:id' => 'questions#destroy', as: 'questions_destroy'
+  delete 'tests/:test_id/questions/:question_id/answers/:id' => 'answers#destroy', as: 'answers_destroy'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
