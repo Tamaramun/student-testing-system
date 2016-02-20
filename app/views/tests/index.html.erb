@@ -13,10 +13,10 @@
       <%= link_to test.name, test_path(test) %>
     </td>
     <td>
-      <%= link_to 'Edit', test_path(test) %>
+      <%= link_to 'Edit', edit_test_path(test) %>
       <%= link_to 'Remove', test_path(test),
                   method: :delete,
-                  data: {confirm: 'Вы точно хотите удалить этот учебный блок?'}
+                  data: {confirm: 'Вы точно хотите удалить этот тест?'}
       %>
     </td>
   </tr>

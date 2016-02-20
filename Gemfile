@@ -46,3 +46,6 @@ group :development do
 end
 
 gem 'devise'
+gem 'faker'
+gem 'bootstrap-sass'
+gem 'simple_form'

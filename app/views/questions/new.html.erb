@@ -1,0 +1,12 @@
+<h1>Create new question</h1>
+
+<%= simple_form_for [@test, @question], :url => {:action => 'create'} do |f| %>
+    <div>
+      <%= f.input :question, label: 'Question' %>
+    </div>
+
+    <%= f.hidden_field :test_id, value: params[:test_id] %>
+    <div>
+      <%= f.submit 'Save' %>
+    </div>
+<% end %>

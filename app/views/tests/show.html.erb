@@ -1,0 +1,24 @@
+<h1>Questions for <%= @test.name.capitalize %></h1>
+<%= link_to 'New question', new_test_question_path(@test) %>
+
+<table>
+  <tr>
+    <th>Question</th>
+    <th>Actions</th>
+  </tr>
+
+  <% @questions.each do |question| %>
+      <tr>
+        <td>
+          <%= link_to question.question, test_question_path(@test, question) %>
+        </td>
+        <td>
+          <%= link_to 'Edit', edit_test_question_path(@test, question) %>
+          <%= link_to 'Remove', test_questions_path(@test, question),
+                      method: :delete,
+                      data: {confirm: 'Вы точно хотите удалить этот вопрос?'}
+          %>
+        </td>
+      </tr>
+  <% end %>
+</table>

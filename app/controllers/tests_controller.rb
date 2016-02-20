@@ -34,10 +34,13 @@ class TestsController < ApplicationController
   
   def show
     @test = Test.find(params[:id])
+    @questions = Question.where(:test_id => @test.id)
   end
 
   def destroy
     @test = Test.find(params[:id])
+    @questions = Question.where(:test_id => @test.id)
+    @questions.destroy(@questions)
     @test.destroy
 
     tests_url
