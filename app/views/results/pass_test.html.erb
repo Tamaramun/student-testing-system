@@ -1,0 +1,15 @@
+<h1>Questions</h1>
+<% counter = 0 %>
+<% @questions.each do |question| %>
+    <% counter += 1 %>
+    <p>Question <%= counter %>: <%= question.question %></p>
+    <% answers = Answer.where(:question_id => question.id) %>
+    <% answers.each do |answer| %>
+        <label>
+          <input type="radio" name="<%= question.id %>" id="<%= @result.id %>" question-id="<%= question.id %>" answer-id="<%= answer.id %>" class="answers">
+          <%= answer.content %>
+        </label></br>
+    <% end %>
+<% end %>
+
+<%= link_to 'Finish Test', class: 'btn btn-default' %>

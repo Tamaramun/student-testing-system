@@ -1,0 +1,25 @@
+<h1><%= @test.name %></h1>
+<p><%= @test.description %></p>
+
+<p>____________________________________</p>
+
+<h2>Student information</h2>
+<%= simple_form_for @result, url: save_result_path, method: :post do |f| %>
+    <div>
+      <%= f.input :student_name, label: 'First name', class: 'form-control' %>
+    </div>
+
+    <div>
+      <%= f.input :student_last_name, label: 'Last name', class: 'form-control' %>
+    </div>
+
+    <div>
+      <%= f.input :student_group, label: 'Group', class: 'form-control' %>
+    </div>
+
+    <%= f.hidden_field :test_id, value: params[:test_id] %>
+
+    <div>
+      <%= f.submit 'Save', class: 'btn btn-success' %>
+    </div>
+<% end %>

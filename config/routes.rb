@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'tests#index'
   devise_for :users
 
   resources :tests,  :except => [:destroy] do
@@ -10,6 +11,16 @@ Rails.application.routes.draw do
   delete 'tests/:id' => 'tests#destroy', as: 'tests_destroy'
   delete 'tests/:test_id/questions/:id' => 'questions#destroy', as: 'questions_destroy'
   delete 'tests/:test_id/questions/:question_id/answers/:id' => 'answers#destroy', as: 'answers_destroy'
+
+  get 'registration_for_test/:id' => 'results#new', as: 'new_result'
+  post 'test_registration/:id' => 'results#create', as: 'save_result'
+
+  get 'test/:id' => 'results#pass_test', as: 'pass_test'
+  post 'answers/:id' => 'results#save_answer', as: 'save_answer'
+
+  get 'test_results/:id' => 'results#index', as: 'test_results'
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

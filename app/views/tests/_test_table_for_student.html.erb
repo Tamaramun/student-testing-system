@@ -1,0 +1,17 @@
+<table class="table table-striped">
+  <tr>
+    <th>#</th>
+    <th>Name</th>
+  </tr>
+
+  <% counter = 0 %>
+  <% @tests.each do |test| %>
+      <% counter += 1 %>
+      <tr>
+        <td><%= counter %> </td>
+        <td>
+          <%= link_to test.name, new_result_path(test) %>
+        </td>
+      </tr>
+  <% end %>
+</table>

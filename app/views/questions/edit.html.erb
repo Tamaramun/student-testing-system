@@ -1,12 +1,12 @@
 <h1>Edit the question</h1>
 
-<%= simple_form_for [@test, @question], :url => {:action => 'update'} do |f| %>
+<%= simple_form_for [@test, @question], :url => {:action => 'update'}, class: 'form-horizontal' do |f| %>
     <div>
-      <%= f.input :question, label: 'Question' %>
+      <%= f.input :question, label: 'Question', class: 'form-control' %>
     </div>
 
     <%= f.hidden_field :test_id, value: params[:test_id] %>
     <div>
-      <%= f.submit 'Save' %>
+      <%= f.submit 'Save', class: 'btn btn-success' %>
     </div>
 <% end %>

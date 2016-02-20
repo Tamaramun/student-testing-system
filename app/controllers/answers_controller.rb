@@ -1,5 +1,5 @@
 class AnswersController < ApplicationController
-
+  before_action :authenticate_user!
   def index
     @answers = Answer.all
   end
@@ -13,15 +13,17 @@ class AnswersController < ApplicationController
   def create
     @test = Test.find(params[:test_id])
     @question = Question.find(params[:question_id])
-    @answer = @question.answers.build(answer_params)
-    # if @answer.is_correct
-    #   @answers = Answer.where(:qusetion_id => @question.id)
-    #   @answers.each do |answer|
-    #     unless answer.is_correct
-    #       true
-    #     end
-    #   end
-    # end
+    @answers = Answer.where(:question_id => @question.id)
+    @answers.each do |answer|
+      if answer.is_correct
+        @answer = @question.answers.build(answer_params)
+        @answer.is_correct = false
+      else
+        @answer = @question.answers.build(answer_params)
+      end
+    end
+
+
     if @answer.save
       redirect_to test_question_url(@test, @question)
     else
@@ -39,8 +41,15 @@ class AnswersController < ApplicationController
     @answer = Answer.find(params[:id])
     @test = Test.find(params[:test_id])
     @question = Question.find(params[:question_id])
-
-    if @answer.update(answer_params)
+    @answers = Answer.where(:question_id => @question.id)
+    @answers.each do |answer|
+      if answer.is_correct and @answer.is_correct
+        @answer.is_correct = false
+      else
+        @answer.update(answer_params)
+      end
+    end
+    if @answer.save
       redirect_to test_question_url(@test, @question)
     else
       render 'edit'
